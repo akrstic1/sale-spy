@@ -7,10 +7,14 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using SaleSpy.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using SaleSpy.Services.Services;
+using SaleSpy.Core.Services;
 
 namespace SaleSpy.Api
 {
@@ -26,12 +30,18 @@ namespace SaleSpy.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "SaleSpy.Api", Version = "v1" });
             });
+
+            services.AddDbContext<SaleSpyDbContext>(options =>
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("SaleSpyDbContext"),
+                    opt => opt.MigrationsAssembly("SaleSpy.Data")));
+
+            services.AddScoped<IArticleSaleService, ArticleSaleService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
