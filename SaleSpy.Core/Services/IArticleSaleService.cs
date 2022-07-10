@@ -12,9 +12,9 @@ namespace SaleSpy.Core.Services
     {
         Task<ArticleSale> Create(ArticleSale newArticleSale);
         Task<List<ArticleSale>> GetAll();
-        Task<int> NumberOfArticleSalesByDate(DateTime date);
+        Task<TimesSoldByDate> NumberOfArticleSalesByDate(DateTime date);
         Task<List<TimesSoldByDate>> NumberOfArticleSalesPerDay();
-        Task<decimal> RevenueByDate(DateTime date);
+        Task<RevenueByDate> RevenueByDate(DateTime date);
         Task<List<RevenueByArticle>> RevenueGroupedByArticles();
         Task<List<RevenueByDate>> RevenuePerDay();
     }

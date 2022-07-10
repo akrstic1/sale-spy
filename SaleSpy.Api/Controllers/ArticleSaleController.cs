@@ -41,7 +41,7 @@ namespace SaleSpy.Api.Controllers
         {
             var result = await _articleSaleService.NumberOfArticleSalesByDate(date);
 
-            return Ok(new { NumberOfSoldArticles = result });
+            return Ok(result);
         }
 
         [HttpGet]
@@ -57,7 +57,7 @@ namespace SaleSpy.Api.Controllers
         {
             var result = await _articleSaleService.RevenueByDate(date);
 
-            return Ok(new { Revenue = result });
+            return Ok(result);
         }
 
         [HttpGet]

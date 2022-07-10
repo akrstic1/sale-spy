@@ -33,9 +33,13 @@ namespace SaleSpy.Services.Services
             return newArticleSale;
         }
 
-        public async Task<int> NumberOfArticleSalesByDate(DateTime date)
+        public async Task<TimesSoldByDate> NumberOfArticleSalesByDate(DateTime date)
         {
-            return await _saleSpyDbContext.ArticleSales.Where(x => x.SoldOn.Date.Equals(date.Date)).CountAsync();
+            return new TimesSoldByDate
+            {
+                SoldOn = date,
+                TimesSold = await _saleSpyDbContext.ArticleSales.Where(x => x.SoldOn.Date.Equals(date.Date)).CountAsync()
+            };
         }
 
         public async Task<List<TimesSoldByDate>> NumberOfArticleSalesPerDay()
@@ -47,9 +51,13 @@ namespace SaleSpy.Services.Services
             }).ToListAsync();
         }
 
-        public async Task<decimal> RevenueByDate(DateTime date)
+        public async Task<RevenueByDate> RevenueByDate(DateTime date)
         {
-            return await _saleSpyDbContext.ArticleSales.Where(x => x.SoldOn.Date.Equals(date.Date)).SumAsync(x => x.SalesPrice);
+            return new RevenueByDate
+            {
+                SoldOn = date,
+                Revenue = await _saleSpyDbContext.ArticleSales.Where(x => x.SoldOn.Date.Equals(date.Date)).SumAsync(x => x.SalesPrice)
+            };
         }
 
         public async Task<List<RevenueByDate>> RevenuePerDay()
