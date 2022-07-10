@@ -36,7 +36,7 @@ namespace SaleSpy.Api.Controllers
             return Ok(result);
         }
 
-        [HttpGet]
+        [HttpGet("{date}")]
         public async Task<IActionResult> NumberOfSoldArticlesByDate(DateTime date)
         {
             var result = await _articleSaleService.NumberOfArticleSalesByDate(date);
@@ -52,7 +52,7 @@ namespace SaleSpy.Api.Controllers
             return Ok(result);
         }
 
-        [HttpGet]
+        [HttpGet("{date}")]
         public async Task<IActionResult> RevenueByDate(DateTime date)
         {
             var result = await _articleSaleService.RevenueByDate(date);
