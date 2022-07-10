@@ -8,10 +8,11 @@ namespace SaleSpy.Core.Resources.Request
     {
         [Required]
         [MaxLength(32)]
-        [RegularExpression("^[a-zA-Z0-9]*$")]
+        [RegularExpression("^[a-zA-Z0-9]*$", ErrorMessage = "Only alphanumeric characters are allowed.")]
         public string ArticleNumber { get; set; }
         [Required]
-        [DataType(DataType.Currency)]
+        [Range(0, int.MaxValue, ErrorMessage = "Price can't be negative.")]
+        [RegularExpression("^[0-9]*(\\,[0-9]{1,2})?$", ErrorMessage = "Invalid currency format.")]
         public decimal SalesPrice { get; set; }
 
         public static ArticleSale ToArticleSale(CreateArticleSaleResource articleSaleDto)
