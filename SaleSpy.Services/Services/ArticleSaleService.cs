@@ -1,12 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SaleSpy.Core.Models;
-using SaleSpy.Core.Resources;
+using SaleSpy.Core.Resources.Response;
 using SaleSpy.Core.Services;
 using SaleSpy.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace SaleSpy.Services.Services
@@ -33,45 +32,45 @@ namespace SaleSpy.Services.Services
             return newArticleSale;
         }
 
-        public async Task<TimesSoldByDate> NumberOfArticleSalesByDate(DateTime date)
+        public async Task<TimesSoldByDateResource> NumberOfArticleSalesByDate(DateTime date)
         {
-            return new TimesSoldByDate
+            return new TimesSoldByDateResource
             {
                 SoldOn = date,
                 TimesSold = await _saleSpyDbContext.ArticleSales.Where(x => x.SoldOn.Date.Equals(date.Date)).CountAsync()
             };
         }
 
-        public async Task<List<TimesSoldByDate>> NumberOfArticleSalesPerDay()
+        public async Task<List<TimesSoldByDateResource>> NumberOfArticleSalesPerDay()
         {
-            return await _saleSpyDbContext.ArticleSales.GroupBy(x => x.SoldOn.Date).Select(x => new TimesSoldByDate
+            return await _saleSpyDbContext.ArticleSales.GroupBy(x => x.SoldOn.Date).Select(x => new TimesSoldByDateResource
             {
                 SoldOn = x.Key,
                 TimesSold = x.Count()
             }).ToListAsync();
         }
 
-        public async Task<RevenueByDate> RevenueByDate(DateTime date)
+        public async Task<RevenueByDateResource> RevenueByDate(DateTime date)
         {
-            return new RevenueByDate
+            return new RevenueByDateResource
             {
                 SoldOn = date,
                 Revenue = await _saleSpyDbContext.ArticleSales.Where(x => x.SoldOn.Date.Equals(date.Date)).SumAsync(x => x.SalesPrice)
             };
         }
 
-        public async Task<List<RevenueByDate>> RevenuePerDay()
+        public async Task<List<RevenueByDateResource>> RevenuePerDay()
         {
-            return await _saleSpyDbContext.ArticleSales.GroupBy(x => x.SoldOn.Date).Select(x => new RevenueByDate
+            return await _saleSpyDbContext.ArticleSales.GroupBy(x => x.SoldOn.Date).Select(x => new RevenueByDateResource
             {
                 SoldOn = x.Key,
                 Revenue = x.Sum(c => c.SalesPrice)
             }).ToListAsync();
         }
 
-        public async Task<List<RevenueByArticle>> RevenueGroupedByArticles()
+        public async Task<List<RevenueByArticleResource>> RevenueGroupedByArticles()
         {
-            return await _saleSpyDbContext.ArticleSales.GroupBy(x => x.ArticleNumber).Select(cl => new RevenueByArticle
+            return await _saleSpyDbContext.ArticleSales.GroupBy(x => x.ArticleNumber).Select(cl => new RevenueByArticleResource
             {
                 ArticleNumber = cl.Key,
                 Revenue = cl.Sum(c => c.SalesPrice)

@@ -1,9 +1,7 @@
 ﻿using SaleSpy.Core.Models;
-using SaleSpy.Core.Resources;
+using SaleSpy.Core.Resources.Response;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace SaleSpy.Core.Services
@@ -12,10 +10,10 @@ namespace SaleSpy.Core.Services
     {
         Task<ArticleSale> Create(ArticleSale newArticleSale);
         Task<List<ArticleSale>> GetAll();
-        Task<TimesSoldByDate> NumberOfArticleSalesByDate(DateTime date);
-        Task<List<TimesSoldByDate>> NumberOfArticleSalesPerDay();
-        Task<RevenueByDate> RevenueByDate(DateTime date);
-        Task<List<RevenueByArticle>> RevenueGroupedByArticles();
-        Task<List<RevenueByDate>> RevenuePerDay();
+        Task<TimesSoldByDateResource> NumberOfArticleSalesByDate(DateTime date);
+        Task<List<TimesSoldByDateResource>> NumberOfArticleSalesPerDay();
+        Task<RevenueByDateResource> RevenueByDate(DateTime date);
+        Task<List<RevenueByArticleResource>> RevenueGroupedByArticles();
+        Task<List<RevenueByDateResource>> RevenuePerDay();
     }
 }

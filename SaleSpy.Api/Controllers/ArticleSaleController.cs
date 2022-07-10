@@ -1,9 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using SaleSpy.Core.Models;
-using SaleSpy.Core.Resources;
+﻿using Microsoft.AspNetCore.Mvc;
+using SaleSpy.Core.Resources.Request;
 using SaleSpy.Core.Services;
-using SaleSpy.Services.Services;
 using System;
 using System.Threading.Tasks;
 

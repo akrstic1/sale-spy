@@ -1,10 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SaleSpy.Core.Models;
-using System;
 
 namespace SaleSpy.Data
 {
-    public class SaleSpyDbContext:DbContext
+    public class SaleSpyDbContext : DbContext
     {
         public DbSet<ArticleSale> ArticleSales { get; set; }
 
