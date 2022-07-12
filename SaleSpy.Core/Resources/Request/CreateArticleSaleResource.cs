@@ -12,7 +12,7 @@ namespace SaleSpy.Core.Resources.Request
         public string ArticleNumber { get; set; }
         [Required]
         [Range(0, int.MaxValue, ErrorMessage = "Price can't be negative.")]
-        [RegularExpression("^[0-9]*(\\,[0-9]{1,2})?$", ErrorMessage = "Invalid currency format.")]
+        [RegularExpression(@"^[0-9]*(\\.[0-9]{1,2})?$", ErrorMessage = "Invalid currency format.")]
         public decimal SalesPrice { get; set; }
 
         public static ArticleSale ToArticleSale(CreateArticleSaleResource articleSaleDto)
