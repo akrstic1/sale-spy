@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <DocumentationFile>Documentation/SaleSpy.Api.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -20,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Documentation\" />
     <Folder Include="Properties\" />
   </ItemGroup>
 

@@ -17,6 +17,10 @@ namespace SaleSpy.Api.Controllers
             _articleSaleService = articleSaleService;
         }
 
+        /// <summary>
+        /// Gets all sale records
+        /// </summary>
+        /// <returns>All sale records</returns>
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
@@ -25,6 +29,21 @@ namespace SaleSpy.Api.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// Creates a new sale record.
+        /// </summary>
+        /// <returns>A newly created sale record.</returns>
+        /// <remarks>
+        /// Sample request:
+        ///
+        ///     {
+        ///        "articleNumber": qwertz12345,
+        ///        "salesPrice": 32.53,
+        ///     }
+        ///
+        /// </remarks>
+        /// <returns>Newly created sale record</returns>
+        /// <response code="200">Returns the newly created sale record</response>
         [HttpPost]
         public async Task<IActionResult> Create(CreateArticleSaleResource createArticleSaleResource)
         {
@@ -33,6 +52,12 @@ namespace SaleSpy.Api.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// Gets all recorded sales on the defined date
+        /// </summary>
+        /// <param name="date">Date to show records on</param>
+        /// <returns>List of sales numbers on the defined date</returns>
+        /// <response code="200">Returns a list of sales numbers on the defined date</response>
         [HttpGet("{date}")]
         public async Task<IActionResult> NumberOfSoldArticlesByDate(DateTime date)
         {
@@ -41,6 +66,11 @@ namespace SaleSpy.Api.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// Gets a list of quanitity of sale records by each day
+        /// </summary>
+        /// <returns>List of sales numbers by each day</returns>
+        /// <response code="200">Returns a list of sales numbers by each day</response>
         [HttpGet]
         public async Task<IActionResult> NumberOfSoldArticlesPerDay()
         {
@@ -49,6 +79,13 @@ namespace SaleSpy.Api.Controllers
             return Ok(result);
         }
 
+
+        /// <summary>
+        /// Gets revenue on the defined date
+        /// </summary>
+        /// <param name="date">Revenue on date</param>
+        /// <returns>Revenue on defined date</returns>
+        /// <response code="200">Returns revenue on the defined date</response>
         [HttpGet("{date}")]
         public async Task<IActionResult> RevenueByDate(DateTime date)
         {
@@ -57,6 +94,11 @@ namespace SaleSpy.Api.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// Gets a list of total revenue by each day
+        /// </summary>
+        /// <returns>List of total revenue by each day</returns>
+        /// <response code="200">Returns a list of total revenue by each day</response>
         [HttpGet]
         public async Task<IActionResult> RevenuePerDay()
         {
@@ -65,6 +107,11 @@ namespace SaleSpy.Api.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// Gets a list of total revenue by article
+        /// </summary>
+        /// <returns>List of total revenue by article</returns>
+        /// <response code="200">Returns a list of total revenue by article</response>
         [HttpGet]
         public async Task<IActionResult> RevenueGroupedByArticles()
         {

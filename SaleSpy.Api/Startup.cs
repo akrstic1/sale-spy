@@ -8,6 +8,9 @@ using Microsoft.OpenApi.Models;
 using SaleSpy.Core.Services;
 using SaleSpy.Data;
 using SaleSpy.Services.Services;
+using System;
+using System.IO;
+using System.Reflection;
 
 namespace SaleSpy.Api
 {
@@ -27,7 +30,15 @@ namespace SaleSpy.Api
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "SaleSpy.Api", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo {
+                    Version = "v1",
+                    Title = "SaleSpy API",
+                    Description = "Microservice API for tracking sales"
+                });
+
+                // using System.Reflection;
+                var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
             });
 
             services.AddDbContext<SaleSpyDbContext>(options =>

@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SaleSpy.Api</name>
+    </assembly>
+    <members>
+        <member name="M:SaleSpy.Api.Controllers.ArticleSaleController.GetAll">
+            <summary>
+            Gets all sale records
+            </summary>
+            <returns>All sale records</returns>
+        </member>
+        <member name="M:SaleSpy.Api.Controllers.ArticleSaleController.Create(SaleSpy.Core.Resources.Request.CreateArticleSaleResource)">
+             <summary>
+             Creates a new sale record.
+             </summary>
+             <returns>A newly created sale record.</returns>
+             <remarks>
+             Sample request:
+            
+                 {
+                    "articleNumber": qwertz12345,
+                    "salesPrice": 32.53,
+                 }
+            
+             </remarks>
+             <returns>Newly created sale record</returns>
+             <response code="200">Returns the newly created sale record</response>
+        </member>
+        <member name="M:SaleSpy.Api.Controllers.ArticleSaleController.NumberOfSoldArticlesByDate(System.DateTime)">
+            <summary>
+            Gets all recorded sales on the defined date
+            </summary>
+            <param name="date">Date to show records on</param>
+            <returns>List of sales numbers on the defined date</returns>
+            <response code="200">Returns a list of sales numbers on the defined date</response>
+        </member>
+        <member name="M:SaleSpy.Api.Controllers.ArticleSaleController.NumberOfSoldArticlesPerDay">
+            <summary>
+            Gets a list of quanitity of sale records by each day
+            </summary>
+            <returns>List of sales numbers by each day</returns>
+            <response code="200">Returns a list of sales numbers by each day</response>
+        </member>
+        <member name="M:SaleSpy.Api.Controllers.ArticleSaleController.RevenueByDate(System.DateTime)">
+            <summary>
+            Gets revenue on the defined date
+            </summary>
+            <param name="date">Revenue on date</param>
+            <returns>Revenue on defined date</returns>
+            <response code="200">Returns revenue on the defined date</response>
+        </member>
+        <member name="M:SaleSpy.Api.Controllers.ArticleSaleController.RevenuePerDay">
+            <summary>
+            Gets a list of total revenue by each day
+            </summary>
+            <returns>List of total revenue by each day</returns>
+            <response code="200">Returns a list of total revenue by each day</response>
+        </member>
+        <member name="M:SaleSpy.Api.Controllers.ArticleSaleController.RevenueGroupedByArticles">
+            <summary>
+            Gets a list of total revenue by article
+            </summary>
+            <returns>List of total revenue by article</returns>
+            <response code="200">Returns a list of total revenue by article</response>
+        </member>
+    </members>
+</doc>
